@@ -1,4 +1,5 @@
 import { Home } from "pages/Home";
+import { Movies } from "pages/Movies";
 import { Routes, Route} from "react-router-dom";
 import { Container, Header, Link } from "./App.styled";
   
@@ -14,7 +15,7 @@ export const App = () => {
       
       <Routes>
         <Route path="/" element={<Home/>} />
-        <Route path="/movies" element={<div>Movies</div>} />
+        <Route path="/movies" element={<Movies/>} />
         <Route path="/movies/:id" element={<div>MovieDetails</div>} >
           <Route path="/movies/:id/cast" element={<div>Cast</div>} />
           <Route path="/movies/:id/reviews" element={<div>Reviews</div>} />

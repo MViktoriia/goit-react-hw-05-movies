@@ -10,10 +10,10 @@ const getTrendingMovies = async () => {
     return response;
 };
 
-const getMoviesByName = async (query, page) => {
-    const url = `${BASE_URL}search/movie?api_key=${API_KEY}&language=en-US&query=${query}&page=${page}&include_adult=false`;
+const getMoviesByName = async (query) => {
+    const url = `${BASE_URL}search/movie?api_key=${API_KEY}&language=en-US&query=${query}&include_adult=false`;
     const response = await axios.get(url);
-    return response.data.results;
+    return response;
 };
 
 const getMovieDetails = async (id) => {

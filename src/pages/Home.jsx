@@ -14,6 +14,7 @@ export const Home = () => {
             setIsLoading(true);
 
             getTrendingMovies().then(({ data }) => {
+                console.log(data.results);
                 setMovies(data.results);
             }).catch(newError => {
                 setError(newError.message);
@@ -22,16 +23,15 @@ export const Home = () => {
 
         getMovies();
         
-    },[])
+    }, [])
 
-    console.log(movies);
     return (
         <main>
             <h1>Trending today</h1>
-            {isLoading}&& <p>Loading...</p>
+            {isLoading && <p>Loading...</p>}
             {error && <p>"Please try again later..."</p>}
-            {/* {movies.length > 0}&&<MoviesList movies={movies} />             */}
+            {movies.length > 0 && <MoviesList movies={movies} />}
         </main>
 
     )
-}
+};
