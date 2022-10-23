@@ -2,6 +2,8 @@ import axios from "axios";
 
 const BASE_URL = 'https://api.themoviedb.org/3/';
 const API_KEY = 'e3f9ac8b4c25ea958657e460a35663f5';
+const IMAGES_BASE_URL = "https://image.tmdb.org/t/p/w342";
+
 
 
 const getTrendingMovies = async () => {
@@ -16,10 +18,10 @@ const getMoviesByName = async (query) => {
     return response;
 };
 
-const getMovieDetails = async (id) => {
+const getMovieById = async (id) => {
     const url = `${BASE_URL}movie/${id}?api_key=${API_KEY}&language=en-US`;
     const response = await axios.get(url);
-    return response.data;
+    return response;
 }
 
 const getMovieCast = async (id) => {
@@ -30,4 +32,4 @@ const getMovieCast = async (id) => {
 
 
 
-export { getTrendingMovies, getMoviesByName, getMovieDetails, getMovieCast };  
+export { getTrendingMovies, getMoviesByName, getMovieById, getMovieCast, IMAGES_BASE_URL };  
