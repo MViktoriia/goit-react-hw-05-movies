@@ -1,6 +1,6 @@
 import { getMovieById } from "api/moviesAPI";
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { Outlet, useParams } from "react-router-dom";
 import { IMAGES_BASE_URL } from "api/moviesAPI";
 
 import MovieDetails from "components/MovieDetails/MovieDetails";
@@ -34,9 +34,10 @@ export default function SingleMoviePage() {
     return (
         <>
             {isLoading && <p>Loading...</p>}
-            {error && <p>Ops...</p>}
+            {error && <p>Ops, something whent wrong...</p>}
 
-            {state && <MovieDetails filmId = {id} posterUrl = {IMAGES_BASE_URL + state.poster_path} filmTitle = {state.title} score ={Math.round(state.vote_average*10)+ '%'} overview = {state.overview} genres ={state.genres.map(genre => genre.name).toString()} />}
+            {state && <MovieDetails filmId={id} posterUrl={IMAGES_BASE_URL + state.poster_path} filmTitle={state.title} score={Math.round(state.vote_average * 10) + '%'} overview={state.overview} genres={state.genres.map(genre => genre.name).toString()} />}
+            <Outlet/>
         </>
     )
 }

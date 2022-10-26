@@ -22,14 +22,20 @@ const getMovieById = async (id) => {
     const url = `${BASE_URL}movie/${id}?api_key=${API_KEY}&language=en-US`;
     const response = await axios.get(url);
     return response;
-}
+};
 
 const getMovieCast = async (id) => {
     const url = `${BASE_URL}movie/${id}/credits?api_key=${API_KEY}&language=en-US`;
     const response = await axios.get(url);
-    return response.data.cast;
+    return response;
+};
+
+const getMovieReviews = async (id) => {
+    const url = `${BASE_URL}movie/${id}/reviews?api_key=${API_KEY}&language=en-US`;
+    const response = await axios.get(url);
+    return response;
 };
 
 
 
-export { getTrendingMovies, getMoviesByName, getMovieById, getMovieCast, IMAGES_BASE_URL };  
+export { getTrendingMovies, getMoviesByName, getMovieById, getMovieCast, getMovieReviews, IMAGES_BASE_URL };  
