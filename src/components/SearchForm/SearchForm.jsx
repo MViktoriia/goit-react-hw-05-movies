@@ -6,7 +6,6 @@ export default function SearchForm({ onSubmit }) {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log(search);
         onSubmit(search);
         setSearch("");
     };
