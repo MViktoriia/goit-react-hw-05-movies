@@ -10,7 +10,6 @@ export default function Cast() {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
     const { id } = useParams();
-    console.log(id);
 
     useEffect(() => {
         const fetchCast = () => {
@@ -18,8 +17,8 @@ export default function Cast() {
 
             getMovieCast(id)
                 .then(({ data }) => {
-                    setCast(data.cast);
                     console.log(data.cast);
+                    setCast(data.cast);
                 })
                 .catch((newError) => setError(newError))
                 .finally(setIsLoading(false));
@@ -29,6 +28,8 @@ export default function Cast() {
         
     }, [id]);
 
+    console.log(cast);
+
     if (!cast) {
         return
     };
@@ -37,7 +38,7 @@ export default function Cast() {
         <>
             {isLoading && <p>Loading...</p>}
             {error && <p>Ops, something whent wrong...</p>}
-            <ul>
+            {cast.length === 0 ? <p>There is no cast information</p> : <ul>
                 {cast.map(({id, character, name, profile_path}) => (
                     <li key={id}>
                         <img src={IMAGES_BASE_URL + profile_path} alt={name} height="150px" />
@@ -45,7 +46,7 @@ export default function Cast() {
                         <p>Character: {character}</p>
                     </li>))
                 }
-            </ul>
+            </ul>}
         </>
         
     )

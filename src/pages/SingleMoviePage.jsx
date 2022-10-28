@@ -9,7 +9,7 @@ import MovieDetails from "components/MovieDetails/MovieDetails";
 export default function SingleMoviePage() {
     
 
-    const [state, setState] = useState(null);
+    const [movie, setMovie] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
 
@@ -21,7 +21,7 @@ export default function SingleMoviePage() {
 
             getMovieById(id)
                 .then(({ data }) => {
-                    setState(data);
+                    setMovie(data);
                 })
                 .catch(newError => {
                     setError(newError.message);
@@ -36,7 +36,7 @@ export default function SingleMoviePage() {
             {isLoading && <p>Loading...</p>}
             {error && <p>Ops, something whent wrong...</p>}
 
-            {state && <MovieDetails filmId={id} posterUrl={IMAGES_BASE_URL + state.poster_path} filmTitle={state.title} score={Math.round(state.vote_average * 10) + '%'} overview={state.overview} genres={state.genres.map(genre => genre.name).toString()} />}
+            {movie && <MovieDetails filmId={id} posterUrl={IMAGES_BASE_URL + movie.poster_path} filmTitle={movie.title} score={Math.round(movie.vote_average * 10) + '%'} overview={movie.overview} genres={movie.genres.map(genre => genre.name).toString()} />}
             <Outlet/>
         </>
     )

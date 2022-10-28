@@ -1,6 +1,6 @@
 import { getMoviesByName } from "api/moviesAPI";
 import { useState, useEffect } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useLocation, useSearchParams } from "react-router-dom";
 import SearchForm from "components/SearchForm/SearchForm";
 import MoviesList from "components/MoviesList/MoviesList";
 
@@ -9,13 +9,11 @@ export const Movies = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
     const [searchParams, setSearchParams] = useSearchParams();
-    console.log(searchParams);
     const query = searchParams.get('query') ?? "";
-    console.log(query);
+    const location = useLocation();
     
 
     const onSubmit = (searchQuery) => {
-        console.log(searchQuery);
         if (searchQuery === "") {
             window.alert("Please, enter movie");
             return;
@@ -58,7 +56,7 @@ export const Movies = () => {
             <SearchForm onSubmit={onSubmit} />
             {isLoading && <p>Loading...</p>}
             {error && <p>Something go wrong, try again please</p>}
-            {movies.length > 0 && <MoviesList movies={movies} />}
+            {movies.length > 0 && <MoviesList movies={movies} state={{ from: location}} />}
         </main>
         
     )

@@ -9,7 +9,6 @@ export default function Cast() {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
     const { id } = useParams();
-    console.log(id);
 
     useEffect(() => {
         const fetchReviews = () => {
@@ -17,8 +16,8 @@ export default function Cast() {
 
             getMovieReviews(id)
                 .then(({ data }) => {
-                    setReviews(data.results);
                     console.log(data.results);
+                    setReviews(data.results);
                 })
                 .catch((newError) => setError(newError))
                 .finally(setIsLoading(false));
@@ -36,14 +35,14 @@ export default function Cast() {
         <>
             {isLoading && <p>Loading...</p>}
             {error && <p>Ops, something whent wrong...</p>}
-            <ul>
+            {reviews.length === 0 ? <p>We don't have any reviews for this movie</p> : <ul>
                 {reviews.map(({id, author, content}) => (
                     <li key={id}>
                         <p>{author}</p>
                         <p>{content}</p>
                     </li>))
                 }
-            </ul>
+            </ul>}
         </>
         
     )
