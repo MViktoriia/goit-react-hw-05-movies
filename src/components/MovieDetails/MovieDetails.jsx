@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { FilmInfoWrapper } from "./MovieDetails.styled";
+import PropTypes from 'prop-types';
 
 export default function MovieDetails({ filmId, posterUrl, filmTitle, score, overview, genres }) {
     const location = useLocation();
@@ -27,4 +28,14 @@ export default function MovieDetails({ filmId, posterUrl, filmTitle, score, over
             </ul>            
         </div>
     )
-}
+};
+
+MovieDetails.propTypes = {
+    filmId: PropTypes.string.isRequired,
+    posterUrl: PropTypes.string.isRequired,
+    filmTitle: PropTypes.string.isRequired,
+    score: PropTypes.string.isRequired,
+    overview: PropTypes.string.isRequired,
+    genres: PropTypes.string.isRequired
+};
+

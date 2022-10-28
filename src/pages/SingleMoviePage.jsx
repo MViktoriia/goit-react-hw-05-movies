@@ -8,7 +8,6 @@ import MovieDetails from "components/MovieDetails/MovieDetails";
 
 export default function SingleMoviePage() {
     
-
     const [movie, setMovie] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
