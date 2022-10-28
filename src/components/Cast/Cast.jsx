@@ -17,7 +17,6 @@ export default function Cast() {
 
             getMovieCast(id)
                 .then(({ data }) => {
-                    console.log(data.cast);
                     setCast(data.cast);
                 })
                 .catch((newError) => setError(newError))
@@ -28,8 +27,6 @@ export default function Cast() {
         
     }, [id]);
 
-    console.log(cast);
-
     if (!cast) {
         return
     };
@@ -39,12 +36,14 @@ export default function Cast() {
             {isLoading && <p>Loading...</p>}
             {error && <p>Ops, something whent wrong...</p>}
             {cast.length === 0 ? <p>There is no cast information</p> : <ul>
-                {cast.map(({id, character, name, profile_path}) => (
+                {cast.map(({ id, character, name, profile_path }) => {
+                    return (
                     <li key={id}>
-                        <img src={IMAGES_BASE_URL + profile_path} alt={name} height="150px" />
+                        {profile_path === null ? <img src="http://dummyimage.com/100x150" alt="foto" /> : <img src={IMAGES_BASE_URL + profile_path} alt={name} height="150px" />}
                         <p>{name}</p>
                         <p>Character: {character}</p>
-                    </li>))
+                        </li>)
+                })
                 }
             </ul>}
         </>

@@ -4,7 +4,7 @@ import { useLocation, useSearchParams } from "react-router-dom";
 import SearchForm from "components/SearchForm/SearchForm";
 import MoviesList from "components/MoviesList/MoviesList";
 
-export const Movies = () => {
+const Movies = () => {
     const [movies, setMovies] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
@@ -62,3 +62,5 @@ export const Movies = () => {
     )
 
 };
+
+export default Movies;

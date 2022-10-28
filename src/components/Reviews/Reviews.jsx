@@ -16,7 +16,6 @@ export default function Cast() {
 
             getMovieReviews(id)
                 .then(({ data }) => {
-                    console.log(data.results);
                     setReviews(data.results);
                 })
                 .catch((newError) => setError(newError))
@@ -35,15 +34,19 @@ export default function Cast() {
         <>
             {isLoading && <p>Loading...</p>}
             {error && <p>Ops, something whent wrong...</p>}
-            {reviews.length === 0 ? <p>We don't have any reviews for this movie</p> : <ul>
-                {reviews.map(({id, author, content}) => (
-                    <li key={id}>
-                        <p>{author}</p>
-                        <p>{content}</p>
-                    </li>))
-                }
-            </ul>}
+            {reviews.length === 0 ? <p>We don't have any reviews for this movie</p> :
+                <section>
+                    <ul>
+                    {reviews.map(({id, author, content}) => (
+                        <li key={id}>
+                            <p>{author}</p>
+                            <p>{content}</p>
+                        </li>))
+                    }
+                    </ul>
+                </section>            
+            }
         </>
         
     )
-}
+};

@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 
 export default function MovieDetails({ filmId, posterUrl, filmTitle, score, overview, genres }) {
     const location = useLocation();
-    const previouseLocation = useRef(location.state.from);
+    const previouseLocation = useRef( location.state?.from ?? "/movies" );
 
     return (
         <div>
